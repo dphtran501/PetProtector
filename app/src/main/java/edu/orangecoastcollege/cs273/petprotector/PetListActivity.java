@@ -18,17 +18,31 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This activity allows the user to set the image of a pet to a picture from their device's
+ * external storage. It asks the user for permission to use their device's camera and external
+ * storage.
+ *
+ * @author Derek Tran
+ * @version 1.0
+ * @since October 26, 2017
+ */
 public class PetListActivity extends AppCompatActivity
 {
-
     private ImageView petImageView;
     private Uri imageURI;
-
 
     // Constants for permissions:
     private static final int GRANTED = PackageManager.PERMISSION_GRANTED;
     private static final int DENIED = PackageManager.PERMISSION_DENIED;
 
+    /**
+     * Initializes <code>PetListActivity</code> by inflating its UI.
+     *
+     * @param savedInstanceState Bundle containing the data it recently supplied in
+     *                           onSaveInstanceState(Bundle) if activity was reinitialized after
+     *                           being previously shut down. Otherwise it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -41,6 +55,10 @@ public class PetListActivity extends AppCompatActivity
 
     }
 
+    /**
+     * Sets the image of pet.
+     * @param v The view that called this method.
+     */
     public void selectPetImage(View v)
     {
         List<String> permsList = new ArrayList<>();
@@ -76,6 +94,12 @@ public class PetListActivity extends AppCompatActivity
 
     }
 
+    /**
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -88,6 +112,12 @@ public class PetListActivity extends AppCompatActivity
         }
     }
 
+    /**
+     *
+     * @param context
+     * @param resID
+     * @return
+     */
     public static Uri getURIFromResource(Context context, int resID)
     {
         Resources res = context.getResources();
