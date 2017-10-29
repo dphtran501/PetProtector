@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This activity allows the user to set the image of a pet to a picture from their device's
- * external storage. It asks the user for permission to use their device's camera and external
+ * This activity allows the user to set the image of a pet to a picture from their device's camera
+ * or external storage. It asks the user for permission to use their device's camera and external
  * storage.
  *
  * @author Derek Tran
@@ -57,6 +57,7 @@ public class PetListActivity extends AppCompatActivity
 
     /**
      * Sets the image of pet.
+     *
      * @param v The view that called this method.
      */
     public void selectPetImage(View v)
@@ -95,10 +96,17 @@ public class PetListActivity extends AppCompatActivity
     }
 
     /**
+     * Called when an activity you launched exits, giving you the requestCode you started it with,
+     * the resultCode it returned, and any additional data from it. The resultCode will be
+     * <code>RESULT_CANCELED</code> if the activity explicitly returned that, didn't return any
+     * result, or crashed during its operation.
      *
-     * @param requestCode
-     * @param resultCode
-     * @param data
+     * @param requestCode The integer request code originally supplied to startActivityForResult(),
+     *                    allowing you to identify who this result came from.
+     * @param resultCode  The integer result code returned by the child activity through its
+     *                    setResult().
+     * @param data        An Intent, which can return result data to the caller (various data can be
+     *                    attached to Intent "extras").
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
@@ -113,12 +121,15 @@ public class PetListActivity extends AppCompatActivity
     }
 
     /**
+     * Get URI to any resource type within an Android Studio project. Method is public static to
+     * allow other classes to use it as a helper function.
      *
-     * @param context
-     * @param resID
-     * @return
+     * @param context The current context
+     * @param resID   The resource identifier of the drawable
+     * @return Uri to resource by given ID
+     * @throws Resources.NotFoundException If the given ID does not exist.
      */
-    public static Uri getURIFromResource(Context context, int resID)
+    public static Uri getURIFromResource(Context context, int resID) throws Resources.NotFoundException
     {
         Resources res = context.getResources();
         // Build a String in the form:
