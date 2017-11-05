@@ -3,14 +3,14 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <!-- ACTIVITY_PET_LIST.XML -->
-    <dimen name="image_width">150dp</dimen>
-    <dimen name="image_height">150dp</dimen>
-
     <!-- PET_LIST_ITEM.XML -->
     <dimen name="image_list_item_width">50dp</dimen>
     <dimen name="image_list_item_height">50dp</dimen>
     <dimen name="image_list_item_margins">5dp</dimen>
     <dimen name="layout_text_views_margins">5dp</dimen>
     <dimen name="text_view_list_item_buffer">3dp</dimen>
+
+    <!-- ACTIVITY_PET_DETAILS.XML -->
+    <dimen name="image_padding">50dp</dimen>
+
 </resources>
