@@ -150,6 +150,6 @@ public class Pet
     @Override
     public String toString()
     {
-        return "Pet{" + "mID=" + mID + ", mName='" + mName + '\'' + ", mDetails='" + mDetails + '\'' + ", mPhone='" + mPhone + '\'' + ", mImageURI=" + mImageURI + '}';
+        return "Pet{" + "ID=" + mID + ", Name='" + mName + '\'' + ", Details='" + mDetails + '\'' + ", Phone='" + mPhone + '\'' + ", ImageURI=" + mImageURI + '}';
     }
 }
