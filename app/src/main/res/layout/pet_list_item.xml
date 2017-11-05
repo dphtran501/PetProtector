@@ -26,12 +26,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/text_view_list_item_buffer"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/dark_blue"
             tools:text="@string/name"/>
 
         <TextView
             android:id="@+id/petListDetailsTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/pale_blue"
             tools:text="@string/details"/>
     </LinearLayout>
 </LinearLayout>
