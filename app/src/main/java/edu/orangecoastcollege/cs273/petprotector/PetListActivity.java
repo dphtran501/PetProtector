@@ -74,6 +74,9 @@ public class PetListActivity extends AppCompatActivity
         // Connect to database
         db = new DBHelper(this);
 
+        // COMMENT THIS OUT WHEN DONE TESTING
+        //db.deleteAllPets();
+
         // Connect to widgets in layout
         petImageView = (ImageView) findViewById(R.id.petImageView);
         petNameEditText = (EditText) findViewById(R.id.nameEditText);

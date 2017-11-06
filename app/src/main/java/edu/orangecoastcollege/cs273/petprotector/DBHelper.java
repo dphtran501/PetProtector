@@ -78,7 +78,7 @@ public class DBHelper extends SQLiteOpenHelper
      */
     public int addPet(Pet pet)
     {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
         values.put(FIELD_NAMES[1], pet.getName());
@@ -100,7 +100,7 @@ public class DBHelper extends SQLiteOpenHelper
     public ArrayList<Pet> getAllPets()
     {
         ArrayList<Pet> petsList = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor = db.query(DATABASE_TABLE, FIELD_NAMES, null, null, null, null, null);
 
@@ -117,5 +117,15 @@ public class DBHelper extends SQLiteOpenHelper
         db.close();
 
         return petsList;
+    }
+
+    /**
+     * Deletes all <code>Pet</code> objects in the database.
+     */
+    public void deleteAllPets()
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(DATABASE_TABLE, null, null);
+        db.close();
     }
 }
