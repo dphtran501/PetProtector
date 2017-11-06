@@ -104,16 +104,16 @@ public class PetListActivity extends AppCompatActivity
     {
         String name = petNameEditText.getText().toString();
         String details = petDetailsEditText.getText().toString();
-        String phone = petPhoneEditText.getText().toString();
+        String phone = PhoneNumberUtils.formatNumber(petPhoneEditText.getText().toString());
 
         // Add pet to database only if EditTexts aren't empty
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(details) || TextUtils.isEmpty(phone))
             Toast.makeText(this, "All information must be provided.", Toast.LENGTH_SHORT).show();
         else
         {
-            int newPetID = db.addPet(new Pet(name, details, PhoneNumberUtils.formatNumber(phone), imageURI));
+            int newPetID = db.addPet(new Pet(name, details, phone, imageURI));
             // Update ListView
-            petList.add(new Pet(newPetID, name, details, PhoneNumberUtils.formatNumber(phone), imageURI));
+            petList.add(new Pet(newPetID, name, details, phone, imageURI));
             petListAdapter.notifyDataSetChanged();
 
             // Reset EditTexts and ImageView for next pet to add
