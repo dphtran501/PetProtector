@@ -137,7 +137,7 @@ public class PetListActivity extends AppCompatActivity
         detailsIntent.putExtra("Name", selectedPet.getName());
         detailsIntent.putExtra("Details", selectedPet.getDetails());
         detailsIntent.putExtra("Phone", selectedPet.getPhone());
-        detailsIntent.putExtra("ImageURI", selectedPet.getImageURI());
+        detailsIntent.putExtra("ImageURI", selectedPet.getImageURI().toString());
 
         startActivity(detailsIntent);
     }
