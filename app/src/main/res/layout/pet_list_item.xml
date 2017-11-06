@@ -3,11 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/petListLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/petListImageView"
         android:layout_width="@dimen/image_list_item_width"
         android:layout_height="@dimen/image_list_item_height"
         android:layout_margin="@dimen/image_list_item_margins"
