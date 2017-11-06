@@ -12,29 +12,51 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This activity allows the user to set the image of a pet to a picture from their device's camera
- * or external storage. It asks the user for permission to use their device's camera and external
+ * This activity allows the user to add to-be-adopted pets to the database. The user needs to provide
+ * a name, details about the pet, and a number to call in order to add the pet to the database.
+ * Optionally, the user can upload a picture of the pet from their device's camera or external
  * storage.
+ * <p>
+ * This activity also displays a list of to-be-adopted pets in the database. Clicking on a list
+ * item will launch <code>PetDetailsActivity</code>, which will display information about the
+ * pet associated with the clicked item.
+ * </p>
  *
  * @author Derek Tran
- * @version 1.0
- * @since October 26, 2017
+ * @version 1.1
+ * @since November 5, 2017
  */
 public class PetListActivity extends AppCompatActivity
 {
-    private ImageView petImageView;
-    private Uri imageURI;
-
     // Constants for permissions:
     private static final int GRANTED = PackageManager.PERMISSION_GRANTED;
     private static final int DENIED = PackageManager.PERMISSION_DENIED;
+
+    // Database
+    private DBHelper db;
+    // Widgets in the activity
+    private ImageView petImageView;
+    private EditText petNameEditText;
+    private EditText petDetailsEditText;
+    private EditText petPhoneEditText;
+    // ListView
+    private List<Pet> petList;
+    private PetListAdapter petListAdapter;
+    private ListView petListView;
+
+    private Uri imageURI;
 
     /**
      * Initializes <code>PetListActivity</code> by inflating its UI.
@@ -49,10 +71,75 @@ public class PetListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_list);
 
+        // Connect to database
+        db = new DBHelper(this);
+
+        // Connect to widgets in layout
         petImageView = (ImageView) findViewById(R.id.petImageView);
+        petNameEditText = (EditText) findViewById(R.id.nameEditText);
+        petDetailsEditText = (EditText) findViewById(R.id.detailsEditText);
+        petPhoneEditText = (EditText) findViewById(R.id.phoneEditText);
+        petListView = (ListView) findViewById(R.id.petListView);
 
-        petImageView.setImageURI(getURIFromResource(this, R.drawable.none));
+        // Connect to and setup ListView
+        petList = db.getAllPets();
+        petListAdapter = new PetListAdapter(this, R.layout.pet_list_item, petList);
+        petListView.setAdapter(petListAdapter);
 
+        // Show default image for pet
+        imageURI = getURIFromResource(this, R.drawable.none);
+        petImageView.setImageURI(imageURI);
+    }
+
+    /**
+     * Adds a <code>Pet</code> object to the database and the ListView.
+     *
+     * @param v The view that called this method.
+     */
+    public void addPet(View v)
+    {
+        String name = petNameEditText.getText().toString();
+        String details = petDetailsEditText.getText().toString();
+        String phone = petPhoneEditText.getText().toString();
+
+        // Add pet to database only if EditTexts aren't empty
+        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(details) || TextUtils.isEmpty(phone))
+            Toast.makeText(this, "All information must be provided.", Toast.LENGTH_SHORT).show();
+        else
+        {
+            int newPetID = db.addPet(new Pet(name, details, phone, imageURI));
+            // Update ListView
+            petList.add(new Pet(newPetID, name, details, phone, imageURI));
+            petListAdapter.notifyDataSetChanged();
+
+            // Reset EditTexts and ImageView for next pet to add
+            petNameEditText.setText("");
+            petDetailsEditText.setText("");
+            petPhoneEditText.setText("");
+            imageURI = getURIFromResource(this, R.drawable.none);
+            petImageView.setImageURI(imageURI);
+        }
+    }
+
+    /**
+     * Launches <code>PetDetailsActivity</code> showing information about the <code>Pet</code>
+     * object that was clicked in the ListView.
+     *
+     * @param v The view that called this method.
+     */
+    public void viewPetDetails(View v)
+    {
+        // Retrieve pet object in tag of selected item
+        LinearLayout selectedItem = (LinearLayout) v;
+        Pet selectedPet = (Pet) selectedItem.getTag();
+
+        Intent detailsIntent = new Intent(this, PetDetailsActivity.class);
+        detailsIntent.putExtra("Name", selectedPet.getName());
+        detailsIntent.putExtra("Details", selectedPet.getDetails());
+        detailsIntent.putExtra("Phone", selectedPet.getPhone());
+        detailsIntent.putExtra("ImageURI", selectedPet.getImageURI());
+
+        startActivity(detailsIntent);
     }
 
     /**

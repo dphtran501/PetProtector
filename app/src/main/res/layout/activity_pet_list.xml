@@ -31,6 +31,7 @@
         android:layout_weight="1"
         android:clickable="true"
         android:contentDescription="@string/photo"
+        android:focusable="true"
         android:onClick="selectPetImage"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/none"/>
@@ -60,7 +61,7 @@
         />
 
     <EditText
-        android:id="@+id/phoneNumberEditText"
+        android:id="@+id/phoneEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -76,6 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@color/pale_blue"
+        android:onClick="addPet"
         android:text="@string/add_button_text"
         android:textColor="@android:color/background_light"/>
 
