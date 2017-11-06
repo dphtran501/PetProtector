@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -110,9 +111,9 @@ public class PetListActivity extends AppCompatActivity
             Toast.makeText(this, "All information must be provided.", Toast.LENGTH_SHORT).show();
         else
         {
-            int newPetID = db.addPet(new Pet(name, details, phone, imageURI));
+            int newPetID = db.addPet(new Pet(name, details, PhoneNumberUtils.formatNumber(phone), imageURI));
             // Update ListView
-            petList.add(new Pet(newPetID, name, details, phone, imageURI));
+            petList.add(new Pet(newPetID, name, details, PhoneNumberUtils.formatNumber(phone), imageURI));
             petListAdapter.notifyDataSetChanged();
 
             // Reset EditTexts and ImageView for next pet to add
