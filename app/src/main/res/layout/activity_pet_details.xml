@@ -15,10 +15,9 @@
 
     <ImageView
         android:id="@+id/petDetailsImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/image_details_width"
+        android:layout_height="@dimen/image_details_height"
         android:layout_gravity="center"
-        android:layout_weight="1"
         android:contentDescription="@string/photo"
         android:padding="@dimen/image_padding"
         android:scaleType="fitCenter"

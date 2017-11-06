@@ -25,10 +25,9 @@
 
     <ImageView
         android:id="@+id/petImageView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/image_width"
+        android:layout_height="@dimen/image_height"
         android:layout_gravity="center"
-        android:layout_weight="1"
         android:clickable="true"
         android:contentDescription="@string/photo"
         android:focusable="true"
