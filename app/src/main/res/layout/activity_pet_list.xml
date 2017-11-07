@@ -41,11 +41,11 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/name"
+        android:imeOptions="actionDone"
         android:inputType="textPersonName"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
-        />
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"/>
 
     <EditText
         android:id="@+id/detailsEditText"
@@ -53,11 +53,11 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/details"
+        android:imeOptions="actionDone"
         android:inputType="textPersonName"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
-        />
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"/>
 
     <EditText
         android:id="@+id/phoneEditText"
@@ -65,9 +65,11 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/phone_number"
+        android:imeOptions="actionDone"
         android:inputType="phone"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
-        />
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"/>
 
     <Button
         android:id="@+id/addPetButton"
